@@ -1,0 +1,37 @@
+#! python3 
+# user needs to have The Fifa World Cup Data @ Kaggle
+
+import codecademylib3_seaborn
+from matplotlib import pyplot as plt
+import pandas as pd
+import seaborn as sns
+
+# OG Data
+df = pd.read_csv('WorldCupMatches.csv')
+# print(df.head())
+# Second Dataset
+df_goals = pd.read_csv('goals.csv')
+
+
+# Sum of Home Goals & Away Goals
+df['Total Goals'] = df['Home Team Goals'] + df['Away Team Goals']
+#print(df.head())
+
+# Bar Chart
+sns.set_style("whitegrid")
+sns.set_context('notebook')
+f, ax = plt.subplots(figsize=(12, 7))
+ax = sns.barplot(x=df['Year'], y=df['Total Goals'])
+ax.set_title('Average Numer of Goals Scored In World Cup Matches By Year')
+plt.show()
+
+# Goals.csv
+print(df_goals.head())
+sns.set_context('notebook')
+
+# Second plot 
+f, ax2 = plt.subplots(figsize=(12,7))
+ax2 = sns.boxplot(x='year', y='goals', data=df_goals, palette='Spectral')
+ax2.set_title('Meaningful and Clear Title')
+plt.show()
+
